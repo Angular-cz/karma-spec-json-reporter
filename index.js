@@ -17,9 +17,16 @@ var parseResult,
         return current;
     }
 
-    parseResult = function (result) {
-        var testStatus = result.success ? 'PASSED' : 'FAILED',
-            current = getCurrentOutputPointer(result.suite);
+    parseResult = function(result) {
+        var testStatus;
+
+        if (result.skipped) {
+            testStatus = 'SKIPPED';
+        } else {
+            testStatus = result.success ? 'PASSED' : 'FAILED';
+        }
+
+        var current = getCurrentOutputPointer(result.suite);
         current[result.description] = testStatus;
     };
 
