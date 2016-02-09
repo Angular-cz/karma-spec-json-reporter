@@ -43,6 +43,8 @@ var parseResult,
             } else {
                 process.stdout.write(JSON.stringify(output));
             }
+
+            output = {};
         };
     };
 
